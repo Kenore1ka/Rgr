@@ -1,6 +1,7 @@
 #include "common.h"
 
 extern std::string read_file(const std::string &);
+extern void validate_password(const std::string &, const std::string &);
 extern void write_file(const std::string &, const std::string &);
 
 extern std::string caesar_encrypt(const std::string &, int);
@@ -119,7 +120,9 @@ int main(int argc, char *argv[]) {
         print_usage();
         return EXIT_FAILURE;
     }
-
+    const std::string headPassword = "aboba";
+    std::string password;
+    
     std::string command = argv[1];
     std::string file_path = argv[2];
 
@@ -127,8 +130,14 @@ int main(int argc, char *argv[]) {
         if (command == "--input") {
             input_command(file_path);
         } else if (command == "--encrypt") {
+            std::cout << "Введите пароль:\n";
+            std::cin >> password;
+            validate_password(password, headPassword);
             encrypt_command(file_path);
         } else if (command == "--decrypt") {
+            std::cout << "Введите пароль:\n";
+            std::cin >> password;
+            validate_password(password, headPassword);
             decrypt_command(file_path);
         } else if (command == "--print") {
             print_command(file_path);

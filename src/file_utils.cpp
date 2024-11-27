@@ -5,6 +5,12 @@ void handle_error(const std::string &message) {
     exit(EXIT_FAILURE);
 }
 
+void validate_password(const std::string &input_password, const std::string &expected_password) {
+    if (input_password != expected_password) {
+        handle_error("Неверный пароль.");
+    }
+}
+
 std::string read_file(const std::string &path) {
     std::ifstream file(path);
     if (!file.is_open()) {
