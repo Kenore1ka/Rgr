@@ -3,8 +3,7 @@
 #include <vector>
 #include <algorithm>
 
-// --- Шифр Цезаря и Шифр с кодовым словом (остаются без изменений) ---
-
+// Цезарь
 std::string caesar_decrypt(const std::string &text, int shift) {
     std::string result;
     for (unsigned char ch : text) {
@@ -13,6 +12,7 @@ std::string caesar_decrypt(const std::string &text, int shift) {
     return result;
 }
 
+// Кодовое слово
 std::string keyword_decrypt(const std::string &text, const std::string &key) {
     if (key.empty()) {
         handle_error("Ключ для шифра с кодовым словом не может быть пустым.");
@@ -27,10 +27,7 @@ std::string keyword_decrypt(const std::string &text, const std::string &key) {
 }
 
 
-// --- Реализация дешифрования для "Байтового" Плейфера ---
-
-// Подключаем объявления вспомогательных функций, реализованных в encrypt.cpp
-// В реальном проекте их стоило бы вынести в отдельный playfair_utils.cpp
+// Плейфер
 struct Point {
     int row, col;
 };

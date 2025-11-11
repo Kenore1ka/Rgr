@@ -3,8 +3,7 @@
 #include <vector>
 #include <algorithm>
 
-// --- Шифр Цезаря и Шифр с кодовым словом (остаются без изменений) ---
-
+// Цезарь
 std::string caesar_encrypt(const std::string &text, int shift) {
     std::string result;
     for (unsigned char ch : text) {
@@ -13,6 +12,7 @@ std::string caesar_encrypt(const std::string &text, int shift) {
     return result;
 }
 
+// Кодовое слово
 std::string keyword_encrypt(const std::string &text, const std::string &key) {
     if (key.empty()) {
         handle_error("Ключ для шифра с кодовым словом не может быть пустым.");
@@ -26,8 +26,7 @@ std::string keyword_encrypt(const std::string &text, const std::string &key) {
     return result;
 }
 
-
-// --- Реализация "Байтового" шифра Плейфера ---
+// Плейфер
 
 // Вспомогательная структура для координат в матрице 16x16
 struct Point {
@@ -73,7 +72,7 @@ Point find_position_16x16(const std::vector<std::vector<unsigned char>> &matrix,
             }
         }
     }
-    return {-1, -1}; // Не должно случиться
+    return {-1, -1};
 }
 
 std::string playfair_encrypt(const std::string &text, const std::string &key) {
