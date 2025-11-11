@@ -7,6 +7,7 @@
 #include <vector>
 #include <stdexcept>
 #include <sstream>
+#include <limits> // Для защиты от некорректного ввода
 
 // Общие константы
 const std::string ENCRYPTED_FILE_SUFFIX = ".enc";

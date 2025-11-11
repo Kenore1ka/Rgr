@@ -1,8 +1,9 @@
 #include "common.h"
+#include "file_utils.h"
 
+// Вместо exit() выбрасываем исключение
 void handle_error(const std::string &message) {
-    std::cerr << "Ошибка: " << message << std::endl;
-    exit(EXIT_FAILURE);
+    throw std::runtime_error(message);
 }
 
 void validate_password(const std::string &input_password, const std::string &expected_password) {
@@ -12,7 +13,7 @@ void validate_password(const std::string &input_password, const std::string &exp
 }
 
 std::string read_file(const std::string &path) {
-    std::ifstream file(path);
+    std::ifstream file(path, std::ios::binary); // Используем binary для корректного чтения любых данных
     if (!file.is_open()) {
         handle_error("Не удалось открыть файл: " + path);
     }
@@ -24,7 +25,7 @@ std::string read_file(const std::string &path) {
 }
 
 void write_file(const std::string &path, const std::string &content) {
-    std::ofstream file(path);
+    std::ofstream file(path, std::ios::binary); // Используем binary для корректной записи
     if (!file.is_open()) {
         handle_error("Не удалось открыть файл для записи: " + path);
     }
